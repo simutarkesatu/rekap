@@ -1,0 +1,389 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gowun Dodum', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d8f5ff;
+}
+
+header {
+    display: inline;
+}
+
+.jumbotron {
+    width: 100%;
+    height: auto;
+}
+
+.jumbotron img{
+    width: inherit;
+}
+
+.nav-top {
+    background-color: white;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 8px 0 #47b0eda8;
+    width: 100%;
+    display: flex;
+    z-index: 5;
+}
+
+.nav-top > .top {
+    font-size: 22px;
+    font-weight: 400;
+    text-decoration: none;
+    display: inline;
+    list-style-type: none;
+    text-align: center;
+    flex-grow: 1;
+    color: #212529;
+    padding: 15px;
+ }
+
+ .ok_head{
+    text-decoration: none;
+    display: inline;
+    text-align: center;
+    color: #212529;
+    
+ }
+
+ .ok_head > .headText:hover{
+    background-color: #56bcf7 !important;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #212529
+ }
+ 
+
+.nav-top > .top:hover{
+    background-color: rgba(0, 255, 255, 0.171);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.nav-top > .no{
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.nav-top > .no:hover{
+    background-color: white !important;
+    cursor: default;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.nav-top > .nav-top-active{
+    border-bottom: 3px solid rgb(0, 247, 255);
+    font-weight: 500;
+}
+
+main {
+    padding: 20px;
+    padding-top: 0;
+    overflow: auto;
+    text-align: justify;
+}
+
+.card, .card2 {
+    box-shadow: 0 4px 8px 0 rgba(35, 248, 255, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 20px;
+    background-color: white;
+    width: 100%;
+}
+
+.card{
+    padding-top: 35px;
+    display: flex;
+    flex-direction: row;
+}
+
+.img{
+    flex-basis: 25%;
+}
+
+.img img{
+    width: 100%;
+}
+
+.judul{
+    flex-basis: 75%;
+    padding: 0 15px;
+    position: relative;
+}
+
+h1{
+    padding: 0;
+    margin: 0;
+}
+
+.headText{
+    margin-top: 8px;
+    background-color: #47afed;
+    border-radius: 5px;
+}
+
+.judul h1{
+    font-size: 35px;
+}
+
+.judul p{
+    font-size: 17px;
+}
+
+.mainkan{
+    position: absolute;
+    bottom: 0;
+    padding: 8px 0px;
+}
+
+.judul a{
+    padding: 6px 15px;
+    text-decoration: none;
+    background-color: #47afed;
+    border-radius: 8px;
+    color: #212529;
+}
+
+.judul a:hover{
+    background-color: #56bcf7;
+}
+
+/* halaman event */
+/* halaman event */
+/* halaman event */
+
+.card2 h1{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.card2 h2{
+    font-size: 30px;
+}
+
+.conLomba, .conSyarat, .conHadiah, .conTombol, .conHubung{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+.conLomba{
+    padding: 0 50px;
+}
+
+.lomba, .syarat, .hadiah, .tombol, .hubung{
+    flex-grow: 1;
+    text-align: center;
+    width: 33%;
+    /* margin-top: 20px; */
+    /* margin: 0 20px; */
+    /* background-color: lightcoral; */
+}
+
+.lomba{
+    transition: transform .3s;
+}
+
+.gam1:hover, .gam2:hover, .gam3:hover{
+    transform: scale(1.1);
+}
+
+.lomba img{
+    width: 70%;
+}
+
+.lomba p, .syarat p, .hadiah p, .hubung p{
+    font-weight: bold;
+    color: rgb(49, 241, 255);
+    margin: 0;
+    margin-top: 10px;
+}
+
+.lomba p{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.ketentuan{
+    text-decoration: none;
+    padding: 5px 12px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+}
+
+.conSyarat, .conHadiah{
+    padding: 0 80px;
+}
+
+.syarat img, .hadiah img{
+    width: 50%;
+}
+
+.conHadiah{
+    padding: 0 100px;
+}
+
+.conTombol, .conHubung{
+    padding: 0 150px;
+}
+
+.tombol, .tombol2{
+    width: 100%;
+    margin: 0 30px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.tombol{
+    padding: 15px;
+    font-size: 20px;
+}
+
+.daftar{
+    background-color: rgb(52, 172, 241);
+}
+
+.daftar:hover{
+    background-color: rgb(74, 152, 241);
+}
+
+.unduh{
+    background-color: rgb(241, 153, 52);
+}
+
+.unduh:hover{
+    background-color: rgb(224, 143, 51);
+}
+
+.conHubung{
+    margin-bottom: 70px;
+}
+
+.nrhubung{
+    margin-bottom: 10px;
+}
+
+.hubung{
+    width: 100%;
+}
+
+.hubung img{
+    width: 60%;
+}
+
+.hubung p{
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.tombol2{
+    padding: 2% 16%;
+    background-color: #51c85d;
+}
+
+.tombol2:hover{
+    background-color: #46bb51;
+}
+
+.tmbInfo{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.info{
+    text-decoration: none;
+    background-color: rgb(73, 73, 172);
+    padding: 8px 60px;
+    color: white;
+    border-radius: 8px;
+}
+
+.info:hover{
+    background-color: rgb(63, 63, 151);
+}
+
+footer {
+    padding: 20px;
+    color: #212529;
+    background-color: #47afed;
+    text-align: center;
+    font-weight: bold;
+}
+  
+.fbagi{
+    width: 49%;
+    padding: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.g1{
+    width: 150px;
+    margin: 10px 20px;
+}
+
+.g2{
+    width: 300px;
+}
+
+.g3{
+    width: 60px;
+    padding-right: 13px;
+}
+
+.bgk{
+    margin-top: 20px;
+}
+
+.wk{
+    width: 80%;
+    margin: 2px auto;
+}
+
+.lk{
+    color: #212529;
+}
+
+.lk a{
+    text-decoration: none;
+    color: #212529;
+}
+
+.lk a:hover{
+    color: #212529;
+}
+
+.lk ul{
+    text-align: left;
+    padding-left: 200px;
+    padding-top: 10px;
+}
+
+.lk li{
+    padding-top: 7px;
+    font-size: 20px;
+}
+
+.tingk{
+    height: 250px;
+    width: 100px;
+    display: inline-block;
+}
+
+.jnew{
+    flex-basis: 100%;
+}

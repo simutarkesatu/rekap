@@ -1,0 +1,141 @@
+@media screen and (max-width: 1000px) {
+    main{
+        padding: 15px;
+        padding-top: 0;
+    }
+
+    .nav-top > .top {
+        font-size: 18px;
+        padding:11px;
+    }
+
+    .card{
+        padding: 20px;
+        padding-top: 25px;
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .img, .judul{
+        width: 100%;
+    }
+    
+    .headText{
+        font-size: 25px;
+        margin-top: 15px;
+    }
+
+    .judul{
+        padding: 0;
+        position: static;
+    }
+
+    .judul h1{
+        font-size: 25px;
+        padding-top: 10px;
+    }
+
+    .judul p{
+        font-size: 15px;
+        margin: 5px 0 20px 0;
+    }
+
+    .mainkan{
+        position: static;
+    }
+
+    .card2{
+        padding: 20px;
+    }
+
+    .card2 h1{
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .card2 h2{
+        margin-bottom: 0;
+        margin-top: 25px;
+        font-size: 26px;
+    }
+
+    .conLomba, .conSyarat, .conHadiah, .conTombol, .conHubung{
+        flex-direction: column;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .conHadiah{
+        margin-top: 10px;
+    }
+
+    .lomba, .syarat, .hadiah, .hubung{
+        width: 100%;
+        margin: 0;
+    }
+
+    .lomba img, .syarat img, .hadiah img, .hubung img{
+        width: 60%;
+    }
+
+    .gam1{
+        margin-top: 20px;
+    }
+
+    .gam1, .gam2, .gam3{
+        margin-bottom: 45px;
+    }
+
+    .lomba p{
+        margin-top: 5px;
+    }
+
+    .syarat{
+        margin-bottom: 25px;
+    }
+
+    .syarat p{
+        margin-top: 0;
+        padding: 0 25px;
+    }
+
+    .hadiah{
+        margin-bottom: 30px;
+    }
+
+    .hadiah p{
+        margin-top: 0;
+    }
+
+    .tombol{
+        width: 92%;
+        margin :0 auto;
+        padding: 13px;
+        font-size: 18px;
+    }
+
+    .daftar{
+        margin-bottom: 25px;
+    }
+
+    .conHubung{
+        margin-bottom: 40px;
+    }
+
+    .nrhubung{
+        margin-top: 45px !important;
+    }
+
+    .hubung{
+        margin-top: 20px;
+    }
+
+    .hb2{
+        margin: 45px 0 20px 0;
+    }
+
+    .info{
+        padding: 8px 80px;
+    }
+    
+}
