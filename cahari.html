@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SI MUTAR KESATU | CAHARI</title>
+    <link rel="icon" type="image/png" href="assert/img/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assert/css/style1.css">
+    <link rel="stylesheet" href="assert/css/styleHP1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        #hasilPemeriksaan { display: none; } /* Sembunyikan hasil dulu */
+        .loader { display: none; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="nav-top">
+        <div class="top no">SI MUTAR KESATU</div>
+        <a href="index.html" class="top">Beranda</a>
+        <a href="artikel.html" class="top">Artikel</a>
+        <a href="info.html" class="top">Tentang Kami</a>
+        <a href="login.html" class="top">Login</a>
+    </nav>
+    <div class="jumbotron">
+        <img src="assert/img/header4.png" style="width: 100%;">
+    </div>
+</header>
+
+<main>
+    <div class="content">
+        <article class="card">
+            <div class="judul jnew p-4">
+                <div class="row mb-3">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="isianNik" placeholder="Masukkan NIK anda untuk melihat hasil pemeriksaan">
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-primary" onclick="cariData()">LIHAT HASIL</button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <div id="loader" class="loader">Memproses data...</div>
+
+        <article id="hasilPemeriksaan" class="card mt-3">
+            <div class="judul jnew p-4" id="kontenHasil">
+                </div>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <p>&#169; 2024 SI MUTAR KESATU</p>
+</footer>
+
+<script>
+    function formatTanggal(isoString) {
+    if (!isoString || isoString === '-') return '-';
+    
+    // Ubah string ISO menjadi objek Date
+    const d = new Date(isoString);
+    
+    // Jika format tidak valid, kembalikan string asli
+    if (isNaN(d.getTime())) return isoString;
+
+    const tgl = d.getDate().toString().padStart(2, '0');
+    const bulan = (d.getMonth() + 1).toString().padStart(2, '0');
+    const tahun = d.getFullYear();
+    
+    return `${tgl}-${bulan}-${tahun}`; // Hasil: 29-02-2024
+    }
+    async function cariData() {
+        const nik = document.getElementById('isianNik').value;
+        const loader = document.getElementById('loader');
+        const hasilDiv = document.getElementById('hasilPemeriksaan');
+        const konten = document.getElementById('kontenHasil');
+
+        if (!nik) {
+            alert("Silakan masukkan NIK terlebih dahulu");
+            return;
+        }
+
+        loader.style.display = "block";
+        hasilDiv.style.display = "none";
+
+        // GANTI URL INI DENGAN URL WEB APP GOOGLE SCRIPT ANDA
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw0BS7Uxkshkw36bilDA53NafiFX2SiGew8W4COGXttYlEdYUIKFX-PH2_edIz0hmYDFQ/exec';
+
+        try {
+            const response = await fetch(`${scriptURL}?nik=${nik}`);
+            const data = await response.json();
+
+            loader.style.display = "none";
+            hasilDiv.style.display = "block";
+
+if (data.length > 0) {
+                // Hapus isi konten sebelumnya agar tidak menumpuk
+                konten.innerHTML = `<h3 class="text-center mb-4">HASIL PEMERIKSAAN IMUNOSEROLOGI</h3>`;
+
+                // Lakukan perulangan (Looping) untuk setiap data yang ditemukan
+                data.forEach((row, index) => {
+                    konten.innerHTML += `
+                        <div class="hasil-item mb-5" style="max-width: 600px; margin: 0 auto; text-align: left;">
+                            <p class="badge bg-primary">Data ke-${index + 1}</p>
+                            
+                            <table class="table table-sm table-borderless mb-3" style="font-size: 0.95rem; width: auto;">
+                                <tr>
+                                    <td style="width: 160px; padding: 2px 0;">Nama Pasien</td>
+                                    <td style="width: 10px; padding: 2px 0;">:</td>
+                                    <td style="padding: 2px 0;"><b>${row.nama || '-'}</b></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;">Tempat, Tgl Lahir</td>
+                                    <td style="padding: 2px 0;">:</td>
+                                    <td style="padding: 2px 0;">${formatTanggal(row.tanggal)}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;">Jenis Kelamin</td>
+                                    <td style="padding: 2px 0;">:</td>
+                                    <td style="padding: 2px 0;">${row.jenis_kelamin || '-'}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0;">Tgl Pemeriksaan</td>
+                                    <td style="padding: 2px 0;">:</td>
+                                    <td style="padding: 2px 0;"><b>${formatTanggal(row.tanggal_pemeriksaan)}</b></td>
+                                </tr>
+                            </table>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50%;">Jenis Pemeriksaan</th>
+                                            <th>Hasil Pemeriksaan Lab</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Hematologi</td><td>${row.h1 || '-'}</td></tr>
+                                        <tr><td>Parasitologi</td><td>${row.h2 || '-'}</td></tr>
+                                        <tr><td>Bakteriologi</td><td>${row.h3 || '-'}</td></tr>
+                                        <tr><td>Kimia Darah</td><td>${row.h4 || '-'}</td></tr>
+                                        <tr><td>Urinalisa</td><td>${row.h5 || '-'}</td></tr>
+                                        <tr><td>Imunologi</td><td>${row.h6 || '-'}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <hr style="border-top: 2px dashed #bbb;">
+                        </div>
+                    `;
+                });
+            
+            } else {
+                konten.innerHTML = "<center><b><h1>Data Tidak Ditemukan</h1></b></center>";
+            }
+        } catch (error) {
+            loader.style.display = "none";
+            alert("Terjadi kesalahan koneksi!");
+            console.error(error);
+        }
+    }
+</script>
+</body>
+</html>

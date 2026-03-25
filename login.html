@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SI MUTAR KESATU | LOGIN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assert/img/logo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assert/css/style1.css">
+    <link rel="stylesheet" href="assert/css/styleHP1.css">
+    <link rel="stylesheet" href="assert/css/semua.css">
+    <link rel="stylesheet" href="assert/css/login.css">
+    <link rel="stylesheet" href="assert/css/popupmodal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://kit.fontawesome.com/bae67f6400.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* Tambahan sedikit agar pesan error terlihat rapi */
+        #error-msg {
+            color: #d9534f;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+        .loading-spinner {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<script>
+    // Cek apakah user SUDAH login
+    if (sessionStorage.getItem("isLoggedIn") === "true") {
+        // Jika sudah, langsung lempar ke dashboard tanpa permisi
+        window.location.href = "admin/dashboard.html"; 
+    }
+</script>
+<body>
+    <div class="header">
+        <a href="index.html"><h3>SI MUTAR KESATU</h3></a>
+    </div>
+
+    <div class="container1">
+        <div class="login">
+            <center>
+                <img src="assert/img/logo.png" alt="" class="gmbr" width="40%">
+                <nav>
+                    <h3 style="margin-top:10px;">LOGIN ADMIN</h3>
+                </nav>
+                <hr>
+            </center>
+
+            <div id="bg_login">
+                <form id="loginForm">
+                    <div class="form">
+                        <div class="input">
+                            <i class="fa fa-user icon"></i>
+                            <input id="username" class="field" type="text" placeholder="Username" required>
+                        </div>
+                        <div class="input">
+                            <i class="fa fa-key icon"></i>
+                            <input id="password" class="field" type="password" placeholder="Password" required>
+                        </div>
+                        <p><input type="checkbox" name="remember"> Remember me</p>
+                        
+                        <center>
+                            <div id="error-msg">Username atau Password salah!</div>
+                            <div class="loading-spinner" id="loader">
+                                <i class="fa fa-spinner fa-spin"></i> Menghubungkan...
+                            </div>
+                            <button type="submit" class="msk" id="btnSubmit">Login</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const loader = document.getElementById('loader');
+        const errorMsg = document.getElementById('error-msg');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Mencegah reload halaman
+
+            // Reset tampilan
+            errorMsg.style.display = 'none';
+            loader.style.display = 'block';
+            btnSubmit.style.disabled = true;
+
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+
+            // GANTI INI dengan URL Web App Google Apps Script Anda
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbw0BS7Uxkshkw36bilDA53NafiFX2SiGew8W4COGXttYlEdYUIKFX-PH2_edIz0hmYDFQ/exec';
+
+            try {
+                // Mengirim request ke Google Sheets
+                const response = await fetch(`${scriptURL}?action=login&u=${u}&p=${p}`);
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    // Simpan status login di Session Storage (hilang saat browser ditutup)
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    sessionStorage.setItem('adminUser', u);
+                    
+                    // Arahkan ke halaman dashboard
+                    window.location.href = 'admin/dashboard.html';
+                } else {
+                    loader.style.display = 'none';
+                    errorMsg.style.display = 'block';
+                    btnSubmit.style.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error!', error.message);
+                loader.style.display = 'none';
+                alert('Terjadi kesalahan koneksi ke server.');
+                btnSubmit.style.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
